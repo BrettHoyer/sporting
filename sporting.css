@@ -1,6 +1,33 @@
 /* CSS declarations go here */
 
+/*header*/
+#header{
+  height: 80px;
 
-#profilePic{
+}
+
+#header .login-display-name{
+  color: green;
+  line-height: 50px;
+  vertical-align: middle;
+}
+
+#header #profilePic{
   display: inline-block;
+}
+
+#greeting{
+  display: inline-block;
+}
+
+/*games*/
+
+#game-wrapper{
+  padding: 10px 20px;
+  width: 300px;
+  margin: 10px 20px;
+  background: lightgrey;
+}
+#new-game input{
+  display: block
 }

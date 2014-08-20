@@ -11,21 +11,33 @@
 
 <template name="games">
   {{#each matchups}}
-    <p>{{this.name}}</p>
+  <div id='game-wrapper'>
+    <h3>{{this.gameTitle}}</h3>
+    <p>{{this.gameSpread}}</p>
+    <p>{{this.gameOverUnder}}</p>
+
+    {{#if isAdmin}}
+    <button id='delete-game'>Delete Game</button>
+    {{/if}}
+  </div>
   {{/each}}
   {{#if isAdmin}}
-  <form id='newGame'>
-    <input id='gameTitle' type='text'/>
-    <input id='submit' type="submit" value='Add new game'/>
+  <form id='new-game'>
+    <label>Game Title:</label>
+    <input id='game-title' type='text'/>
+    <label>Game Spread:</label>
+    <input id='game-spread' type='text'/>
+    <label>Game Over/Under</label>
+    <input id='game-over-under' type='text'/>
+    <button id='new-game-button'>Add Game</button>
   </form>
   {{/if}}
 </template>
 
 
 <template name='header'>
-  <img id='profilePic' src={{profilePic}} />
-  {{> loginButtons}}
-  {{#if name}}
-  <h1>{{greeting}} {{name}}.</h1>
-  {{/if}}
+  <div id='header'>
+    <img id='profilePic' src={{profilePic}} />
+    {{> loginButtons}}
+  </div>
 </template>

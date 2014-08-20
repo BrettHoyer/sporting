@@ -18,26 +18,27 @@ if (Meteor.isClient) {
 
 
   Template.games.events({
-    'click #newGame #submit': function (e) {
+    'click #new-game #new-game-button': function (e) {
       e.preventDefault();
 
-      var newGame = $('#newGame #gameTitle').val();
+      var gameTitle = $('#new-game #game-title').val();
+      var gameSpread = $('#new-game #game-spread').val();
+      var gameOverUnder = $('#new-game #game-over-under').val();
 
-      Games.insert({name: newGame})
+      Games.insert({gameTitle: gameTitle, gameSpread: gameSpread, gameOverUnder: gameOverUnder});
+
+      $('#new-game input').val('');
+    },
+
+    'click #delete-game': function(e){
+      e.preventDefault();
+
+      console.log(this);
+
+      Games.remove({_id: this._id})
+
     }
   });
-
-  Template.header.greeting = function () {
-    return "Welcome to Tarf Sporting, ";
-  };
-
-  Template.header.name = function(){
-    if(Meteor.user()){
-      var firstName = Meteor.user().services.facebook.first_name
-      var lastName = Meteor.user().services.facebook.last_name
-      return firstName + ' ' + lastName;
-    }
-  }
 
   Template.header.profilePic = function(){
     if(Meteor.user())
@@ -69,4 +70,3 @@ if (Meteor.isServer) {
 //shared client / server
 Games = new Meteor.Collection('games');
 Users = Meteor.users;
-
