@@ -4,20 +4,33 @@
 
 <body>
   {{>header}}
-  {{> games}}
 
 
 </body>
 
 <template name="games">
   {{#each matchups}}
-  <div id='game-wrapper'>
-    <h3>{{this.gameTitle}}</h3>
-    <p>{{this.gameSpread}}</p>
-    <p>{{this.gameOverUnder}}</p>
+  <div class='game-wrapper'>
+    <h3 class='game-title'>{{this.gameTitle}}</h3>
+    <section class='spread-wrapper'>
+      <span class='awaySpread spread'>
+        <input type='radio' name='spread' value={{this.awayTeam}}> <p>{{this.awayTeam}} {{this.awaySpread}}</p>
+      </span>
+      <span class='homeSpread spread'>
+        <input type='radio' name='spread' value={{this.homeTeam}}> <p>{{this.homeTeam}} {{this.homeSpread}}</p>
+      </span>
+    </section>
+    <section class='over-under-wrapper'>
+      <span class='awaySpread spread'>
+        <input type='radio' name='spread' value={{this.awayTeam}}> <p> Under {{this.gameOverUnder}}</p>
+      </span>
+      <span class='homeSpread spread'>
+        <input type='radio' name='spread' value={{this.homeTeam}}> <p> Over {{this.gameOverUnder}}</p>
+      </span>
+    </section>
 
     {{#if isAdmin}}
-    <button id='delete-game'>Delete Game</button>
+    <button class='delete-game'>Delete Game</button>
     {{/if}}
   </div>
   {{/each}}
@@ -25,8 +38,14 @@
   <form id='new-game'>
     <label>Game Title:</label>
     <input id='game-title' type='text'/>
-    <label>Game Spread:</label>
-    <input id='game-spread' type='text'/>
+    <label>Away Team:</label>
+    <input id='away-team' type='text'/>
+    <label>Home Team:</label>
+    <input id='home-team' type='text'/>
+    <label>Away Spread:</label>
+    <input id='away-spread' type='text'/>
+    <label>Home Spread:</label>
+    <input id='home-spread' type='text'/>
     <label>Game Over/Under</label>
     <input id='game-over-under' type='text'/>
     <button id='new-game-button'>Add Game</button>

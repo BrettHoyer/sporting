@@ -22,11 +22,41 @@
 
 /*games*/
 
-#game-wrapper{
+.game-wrapper{
   padding: 10px 20px;
   width: 300px;
   margin: 10px 20px;
   background: lightgrey;
+}
+
+.game-wrapper .game-title{
+  text-align: center
+}
+
+.games-wrapper .spread-wrapper{
+  min-width: 300px;
+  margin: 0 auto;
+}
+
+.spread{
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.awaySpread{
+  float: left;
+}
+.homeSpread{
+  float: right;
+}
+
+.over-under-wrapper{
+  clear:both;
+}
+
+.delete-game{
+  width: 300px;
+  margin: 0 auto;
 }
 #new-game input{
   display: block

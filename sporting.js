@@ -22,10 +22,13 @@ if (Meteor.isClient) {
       e.preventDefault();
 
       var gameTitle = $('#new-game #game-title').val();
-      var gameSpread = $('#new-game #game-spread').val();
+      var awayTeam = $('#new-game #away-team').val();
+      var homeTeam = $('#new-game #home-team').val();
+      var awaySpread = $('#new-game #away-spread').val();
+      var homeSpread = $('#new-game #home-spread').val();
       var gameOverUnder = $('#new-game #game-over-under').val();
 
-      Games.insert({gameTitle: gameTitle, gameSpread: gameSpread, gameOverUnder: gameOverUnder});
+      Games.insert({gameTitle: gameTitle, awayTeam: awayTeam, homeTeam: homeTeam, awaySpread: awaySpread, homeSpread: homeSpread, gameOverUnder: gameOverUnder});
 
       $('#new-game input').val('');
     },
@@ -57,6 +60,10 @@ if (Meteor.isServer) {
 
     if(user.services.facebook){
       user.profile.profilePic = 'http://graph.facebook.com/' + user.services.facebook.id + '/picture/'
+
+      if(user.services.facebook.id === "10152598598395821"){
+        user.profile.admin = true;
+      }
     }
     return user;
   })
@@ -70,3 +77,10 @@ if (Meteor.isServer) {
 //shared client / server
 Games = new Meteor.Collection('games');
 Users = Meteor.users;
+
+
+Router.map(function(){
+  this.route('games', {
+    path: '/'
+  })
+})
